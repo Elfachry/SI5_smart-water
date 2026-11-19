@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Smart Water</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Smart Water</h1>
+      <p>Monitoring kualitas air berdasarkan pH, kekeruhan, dan suhu.</p>
+    </header>
+    <main>
+      <section id="summary" aria-label="Ringkasan status"></section>
+
+      <section>
+        <h2>Tambah sampel</h2>
+        <form id="form">
+          <label
+            >Lokasi
+            <input name="location" required placeholder="Contoh: Sumur Dusun A"
+          /></label>
+          <label
+            >Jenis sumber
+            <select name="source">
+              <option>Sumur</option>
+              <option>Sungai</option>
+              <option>PDAM</option>
+              <option>Lainnya</option>
+            </select>
+          </label>
+          <label
+            >Waktu <input name="time" type="datetime-local" required
+          /></label>
+          <label
+            >pH <input name="ph" type="number" step="any" required
+          /></label>
+          <label
+            >Kekeruhan (NTU)
+            <input name="turbidity" type="number" step="any" required
+          /></label>
+          <label
+            >Suhu air (°C)
+            <input name="waterTemp" type="number" step="any" required
+          /></label>
+          <label
+            >Suhu udara (°C)
+            <input name="airTemp" type="number" step="any" required
+          /></label>
+          <button type="submit">Simpan sampel</button>
+        </form>
+        <p id="form-error" role="alert"></p>
+      </section>
+
+      <section>
+        <h2>Perbandingan sampel</h2>
+        <div id="chart"></div>
+      </section>
+
+      <section>
+        <h2>Daftar sampel</h2>
+        <div class="scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Lokasi</th>
+                <th>Waktu</th>
+                <th>pH</th>
+                <th>Kekeruhan</th>
+                <th>Selisih suhu</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+          </table>
+        </div>
+        <p id="empty">
+          Belum ada sampel. Isi form di atas untuk menambah sampel pertama.
+        </p>
+      </section>
+    </main>
+
+    <script src="js/config/thresholds.js"></script>
+    <script src="js/core/validate.js"></script>
+    <script src="js/core/classify.js"></script>
+    <script src="js/core/format.js"></script>
+    <script src="js/data/storage.js"></script>
+    <script src="js/ui/summary.js"></script>
+    <script src="js/ui/form.js"></script>
+    <script src="js/ui/chart.js"></script>
+    <script src="js/ui/table.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
